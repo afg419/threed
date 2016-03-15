@@ -1,0 +1,59 @@
+<div class="container">
+  <script type="text/javascript" id="game-play1">
+  function setup(){
+    height = 500;
+    width = 500;
+    cnv = createCanvas(height , width);
+  }
+  var t = 0;
+
+  var p1 = new Point(new Vector(100,0,0));
+  var p2 = new Point(new Vector(10,400,0));
+  var p3 = new Point(new Vector(10,300,300));
+  var p4 = new Point(new Vector(70,500,200));
+  var points = [p1,p2,p3,p4]
+  var player = new Player(new Vector(0,0,0), new Vector(1,0,0))
+
+  var draw = function(){
+    background(255,255,255);
+
+    if(points.length < 20){
+      points.push(new Point(new Vector(200 * Math.random(), 2000 * (Math.random() - 0.5), 2000*(Math.random() - 0.5)) ) )
+      points.push(new Point(new Vector(200 * Math.random(), 2000 * (Math.random() - 0.5), 2000*(Math.random() - 0.5)) ) )
+      points.push(new Point(new Vector(200 * Math.random(), 2000 * (Math.random() - 0.5), 2000*(Math.random() - 0.5)) ) )
+      points.push(new Point(new Vector(200 * Math.random(), 2000 * (Math.random() - 0.5), 2000*(Math.random() - 0.5)) ) )
+      points.push(new Point(new Vector(200 * Math.random(), 2000 * (Math.random() - 0.5), 2000*(Math.random() - 0.5)) ) )
+      points.push(new Point(new Vector(200 * Math.random(), 2000 * (Math.random() - 0.5), 2000*(Math.random() - 0.5)) ) )
+      points.push(new Point(new Vector(200 * Math.random(), 2000 * (Math.random() - 0.5), 2000*(Math.random() - 0.5)) ) )
+      points.push(new Point(new Vector(200 * Math.random(), 2000 * (Math.random() - 0.5), 2000*(Math.random() - 0.5)) ) )
+      points.push(new Point(new Vector(200 * Math.random(), 2000 * (Math.random() - 0.5), 2000*(Math.random() - 0.5)) ) )
+      points.push(new Point(new Vector(200 * Math.random(), 2000 * (Math.random() - 0.5), 2000*(Math.random() - 0.5)) ) )
+    }
+
+    for (i = 0; i < points.length; i++){
+      points[i].sketchRelativeTo(player)
+      if(!points[i].isVisibleBy(player)){
+        points.splice(i,1)
+      }
+    }
+  }
+
+  var keyPressed = function(){
+    if (key === "W" ) {
+      player.loc = (player.loc).plus(scalMult(0.5,player.heading));
+    }
+    if (key === "S" ) {
+      player.loc = (player.loc).minus(player.heading);
+    }
+
+    if (key === "A"){
+      // player.heading = new Vector(player.heading.x -= 0.5, player.heading.y -= 0.5, player.heading.z);
+    }
+
+    if (key === "D"){
+      // player.loc = (player.loc).minus(player.heading);
+    }
+
+  }
+  </script>
+</div>
