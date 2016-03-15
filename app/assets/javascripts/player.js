@@ -5,6 +5,35 @@ var Player = function(p, n){
   this.b = scalMult(1/300, new Vector( - n.x * n.z, -n.y * n.z, n.x * n.x + n.y * n.y))
 };
 
+Player.prototype.rotateBy = function(mult, aORb){
+  direction = {"a": this.a, "b": this.b}[aORb];
+  var nPre = this.heading.plus(scalMult(mult,direction));
+  var n = scalMult(1/nPre.mag(), nPre);
+  return new Player(this.loc, n);
+};
+
+Player.prototype.rotate = function(direction){
+  var player = this;
+  switch (direction) {
+    case "A":
+      player = this.rotateBy(-3,"a")
+      break;
+    case "D":
+      player = this.rotateBy(3,"a")
+      break;
+    case "O":
+      player = this.rotateBy(-3,"b")
+      break;
+    case "L":
+      player = this.rotateBy(3,"b")
+      break;
+    default:
+      break;
+  }
+  return player
+}
+
+
 var testPlayerOps = function(){
   var p = new Vector(0,0,0);
   var unscaled_n = new Vector(1,1,1);

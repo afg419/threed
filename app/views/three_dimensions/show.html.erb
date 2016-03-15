@@ -40,44 +40,14 @@
   }
 
   var keyPressed = function(){
+    player = player.rotate(key)
+
     if (key === "W" ) {
-      player.loc = (player.loc).plus(scalMult(1.5,player.heading));
+      player.loc = (player.loc).plus(scalMult(0.5,player.heading));
     }
-
     if (key === "S" ) {
-      player.loc = (player.loc).minus(scalMult(1.5,player.heading));
+      player.loc = (player.loc).minus(player.heading);
     }
-
-    if (key === "A"){
-      var nPre = player.heading.minus(scalMult(3,player.a))
-      var n = scalMult(1/nPre.mag(), nPre)
-      return player = new Player(player.loc, n)
-      // var newX = player.heading.x * cos(-Math.PI/64) - player.heading.y * sin(-Math.PI/64)
-      // var newY = player.heading.x * sin(-Math.PI/64) + player.heading.y * cos(-Math.PI/64)
-      // return player = new Player(player.loc, new Vector(newX, newY, player.heading.z))
-    }
-
-    if (key === "D"){
-      var nPre = player.heading.plus(scalMult(3,player.a))
-      var n = scalMult(1/nPre.mag(), nPre)
-      return player = new Player(player.loc, n)
-      //   var newX = player.heading.x * cos(Math.PI/64) - player.heading.y * sin(Math.PI/64)
-      //   var newY = player.heading.x * sin(Math.PI/64) + player.heading.y * cos(Math.PI/64)
-      // return player = new Player(player.loc, new Vector(newX, newY, player.heading.z))
-    }
-
-    if (key === "O"){
-      var nPre = player.heading.minus(scalMult(3,player.b))
-      var n = scalMult(1/nPre.mag(), nPre)
-      return player = new Player(player.loc, n)
-    }
-
-    if (key === "L"){
-      var nPre = player.heading.plus(scalMult(3,player.b))
-      var n = scalMult(1/nPre.mag(), nPre)
-      return player = new Player(player.loc, n)
-    }
-
   }
   </script>
 </div>

@@ -10,22 +10,26 @@ var draw = function(){
 }
 
 var keyPressed = function(){
+  switch(key){
+    case "A":
+      player = player.rotate(key)
+      break;
+    case "D":
+      player = player.rotate(key)
+      break;
+    case "O":
+      player = player.rotate(key)
+      break;
+    case "L":
+      player = player.rotate(key)
+      break;
+  }
+
+
   if (key === "W" ) {
     player.loc = (player.loc).plus(scalMult(0.5,player.heading));
   }
   if (key === "S" ) {
     player.loc = (player.loc).minus(player.heading);
-  }
-
-  if (key === "A"){
-    var newX = player.heading.x * cos(Math.PI/4) - player.heading.y * sin(Math.PI/4)
-    var newY = player.heading.x * sin(Math.PI/4) + player.heading.y * cos(Math.PI/4)
-    return player = new Player(player.loc, new Vector(newX, newY, player.heading.z))
-  }
-
-  if (key === "D"){
-      var newX = player.heading.x * cos(-Math.PI/4) - player.heading.y * sin(-Math.PI/4)
-      var newY = player.heading.x * sin(-Math.PI/4) + player.heading.y * cos(-Math.PI/4)
-    return player = new Player(player.loc, new Vector(newX, newY, player.heading.z))
   }
 }
