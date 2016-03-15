@@ -27,9 +27,9 @@ Point.prototype.isVisibleBy = function(player){
 
 Point.prototype.sketchRelativeTo = function(player){
   var coords = this.localCoordsOnVisPlane(player);
-
+  var dist = this.loc.dist(player.loc)
   fill(this.loc.dist(player.loc));
-  return ellipse(coords.x + 250, coords.y + 250, 5,5)
+  return ellipse(coords.x + 250, coords.y + 250, 40/(Math.pow(dist,0.5)) ,40/(Math.pow(dist,0.5)))
 };
 
 
