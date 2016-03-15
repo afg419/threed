@@ -27,7 +27,14 @@ Vector.prototype.comp = function(vec){
 
 Vector.prototype.dist = function(vec){
   return this.minus(vec).mag();
-}
+};
+
+Vector.prototype.rotateVert = function(phi){
+  var rho = this.mag()
+  var phi0 = acos(this.z/rho)
+  var newPhi = phi0 + phi
+  return new Vector(this.x/sin(phi0) * sin(newPhi), this.y/sin(phi0) * sin(newPhi), rho * cos(newPhi))
+};
 
 var scalMult = function(a, vec){
     return new Vector(a*vec.x, a*vec.y, a*vec.z);

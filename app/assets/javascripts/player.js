@@ -1,8 +1,8 @@
 var Player = function(p, n){
   this.loc = p;
   this.heading = n;
-  this.a = new Vector(-n.y, n.x, 0)
-  this.b = new Vector( - n.x * n.z, -n.y * n.z, n.x * n.x + n.y * n.y)
+  this.a = scalMult(1/300,new Vector(-n.y, n.x, 0))
+  this.b = scalMult(1/300, new Vector( - n.x * n.z, -n.y * n.z, n.x * n.x + n.y * n.y))
 };
 
 var testPlayerOps = function(){

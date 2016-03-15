@@ -12,8 +12,8 @@ Point.prototype.pointOnVisPlane = function(player){
 Point.prototype.localCoordsOnVisPlane = function(player){
   if (this.isVisibleBy(player)){
     var r = this.pointOnVisPlane(player);
-    var s = r.comp(player.a)
-    var t = r.comp(player.b)
+    var s = r.comp(player.a) / player.a.mag()
+    var t = r.comp(player.b) / player.b.mag()
     return new Vector(s,t)
   } else {
     return new Vector(1000000, 1000000)
@@ -28,18 +28,8 @@ Point.prototype.isVisibleBy = function(player){
 Point.prototype.sketchRelativeTo = function(player){
   var coords = this.localCoordsOnVisPlane(player);
   var dist = this.loc.dist(player.loc)
-  fill(this.loc.dist(player.loc));
   return ellipse(coords.x + 250, coords.y + 250, 40/(Math.pow(dist,0.5)) ,40/(Math.pow(dist,0.5)))
 };
-
-
-
-
-
-
-
-
-
 
 var testVisOps = function(){
   var q = new Vector(100,0,0);
@@ -48,8 +38,8 @@ var testVisOps = function(){
   var n = new Vector(1,0,0);
   var player = new Player(p,n)
 
-  text("p = 0 0 0, n = 1 0 0, q = 100 0 0, a:" + (point.localCoordsOnVisPlane(player).x) + " b:" + point.localCoordsOnVisPlane(player).y, 300,100)
-  text("point on vis plane" + "x:" + point.pointOnVisPlane(player).x + " y:" + point.pointOnVisPlane(player).y + " z:" + point.pointOnVisPlane(player).z, 300,120)
+  text("p = 0 0 0, n = 1 0 0, q = 100 0 0, a:" + (point.localCoordsOnVisPlane(player).x) + " b:" + point.localCoordsOnVisPlane(player).y, 100,100)
+  text("point on vis plane" + "x:" + point.pointOnVisPlane(player).x + " y:" + point.pointOnVisPlane(player).y + " z:" + point.pointOnVisPlane(player).z, 100,120)
 
   var q = new Vector(200,0,0);
   var point = new Point(q);
@@ -57,8 +47,8 @@ var testVisOps = function(){
   var n = new Vector(1,0,0);
   var player = new Player(p,n)
 
-  text("p = 0 0 0, n = 1 0 0, q = 200 0 0, a:" + (point.localCoordsOnVisPlane(player).x) + " b:" + point.localCoordsOnVisPlane(player).y, 300,140)
-  text("point on vis plane" + "x:" + point.pointOnVisPlane(player).x + " y:" + point.pointOnVisPlane(player).y + " z:" + point.pointOnVisPlane(player).z, 300,160)
+  text("p = 0 0 0, n = 1 0 0, q = 200 0 0, a:" + (point.localCoordsOnVisPlane(player).x) + " b:" + point.localCoordsOnVisPlane(player).y, 100,140)
+  text("point on vis plane" + "x:" + point.pointOnVisPlane(player).x + " y:" + point.pointOnVisPlane(player).y + " z:" + point.pointOnVisPlane(player).z, 100,160)
 
   var q = new Vector(1,10,0);
   var point = new Point(q);
@@ -66,8 +56,8 @@ var testVisOps = function(){
   var n = new Vector(1,0,0);
   var player = new Player(p,n)
 
-  text("p = 0 0 0, n = 1 0 0, q = 1 10 0, a:" + (point.localCoordsOnVisPlane(player).x) + " b:" + point.localCoordsOnVisPlane(player).y, 300,180)
-  text("point on vis plane" + "x:" + point.pointOnVisPlane(player).x + " y:" + point.pointOnVisPlane(player).y + " z:" + point.pointOnVisPlane(player).z, 300,200)
+  text("p = 0 0 0, n = 1 0 0, q = 1 10 0, a:" + (point.localCoordsOnVisPlane(player).x) + " b:" + point.localCoordsOnVisPlane(player).y, 100,180)
+  text("point on vis plane" + "x:" + point.pointOnVisPlane(player).x + " y:" + point.pointOnVisPlane(player).y + " z:" + point.pointOnVisPlane(player).z, 100,200)
 
   var q = new Vector(10,10,0);
   var point = new Point(q);
@@ -75,8 +65,8 @@ var testVisOps = function(){
   var n = new Vector(1,0,0);
   var player = new Player(p,n)
 
-  text("p = 0 0 0, n = 1 0 0, q = 10 10 0, a:" + (point.localCoordsOnVisPlane(player).x) + " b:" + point.localCoordsOnVisPlane(player).y, 300,220)
-  text("point on vis plane" + "x:" + point.pointOnVisPlane(player).x + " y:" + point.pointOnVisPlane(player).y + " z:" + point.pointOnVisPlane(player).z, 300,240)
+  text("p = 0 0 0, n = 1 0 0, q = 10 10 0, a:" + (point.localCoordsOnVisPlane(player).x) + " b:" + point.localCoordsOnVisPlane(player).y, 100,220)
+  text("point on vis plane" + "x:" + point.pointOnVisPlane(player).x + " y:" + point.pointOnVisPlane(player).y + " z:" + point.pointOnVisPlane(player).z, 100,240)
 
   var q = new Vector(-10,0,0);
   var point = new Point(q);
@@ -84,6 +74,36 @@ var testVisOps = function(){
   var n = new Vector(1,0,0);
   var player = new Player(p,n)
 
-  text("p = 0 0 0, n = 1 0 0, q = -10 0 0, a:" + (point.localCoordsOnVisPlane(player).x) + " b:" + point.localCoordsOnVisPlane(player).y, 300,260)
-  text("point on vis plane" + "x:" + point.pointOnVisPlane(player).x + " y:" + point.pointOnVisPlane(player).y + " z:" + point.pointOnVisPlane(player).z, 300,280)
+  text("p = 0 0 0, n = 1 0 0, q = -10 0 0, a:" + (point.localCoordsOnVisPlane(player).x) + " b:" + point.localCoordsOnVisPlane(player).y, 100,260)
+  text("point on vis plane" + "x:" + point.pointOnVisPlane(player).x + " y:" + point.pointOnVisPlane(player).y + " z:" + point.pointOnVisPlane(player).z, 100,280)
+
+  var q = new Vector(2,0,0);
+  var point = new Point(q);
+  var p = new Vector(0,0,0);
+  var n = new Vector(1,0,0);
+  var player = new Player(p,n)
+
+  text("p = 0 0 0, n = 1 0 0, q = 2 0 0, a:" + (point.localCoordsOnVisPlane(player).x) + " b:" + point.localCoordsOnVisPlane(player).y, 100,300)
+  text("point on vis plane" + "x:" + point.pointOnVisPlane(player).x + " y:" + point.pointOnVisPlane(player).y + " z:" + point.pointOnVisPlane(player).z, 100,320)
+
+  var q = new Vector(2,0,0);
+  var point = new Point(q);
+  var p = new Vector(0,0,0);
+  var n0 = new Vector(1,1,0);
+  var n = scalMult(1/n0.mag(), n0);
+  var player = new Player(p,n)
+
+  text("p = 0 0 0, n = 1 1 0 normalized, q = 2 0 0, a:" + (point.localCoordsOnVisPlane(player).x) + " b:" + point.localCoordsOnVisPlane(player).y, 100,340)
+  text("point on vis plane" + "x:" + point.pointOnVisPlane(player).x + " y:" + point.pointOnVisPlane(player).y + " z:" + point.pointOnVisPlane(player).z, 100,360)
+
+  var q = new Vector(2,0,0);
+  var point = new Point(q);
+  var p = new Vector(0,0,0);
+  var n0 = new Vector(0.5,1,0);
+  var n = scalMult(1/n0.mag(), n0);
+  var player = new Player(p,n)
+
+  text("p = 0 0 0, n = 0.5 1 0 normalized, q = 2 0 0, a:" + (point.localCoordsOnVisPlane(player).x) + " b:" + point.localCoordsOnVisPlane(player).y, 100,380)
+  text("point on vis plane" + "x:" + point.pointOnVisPlane(player).x + " y:" + point.pointOnVisPlane(player).y + " z:" + point.pointOnVisPlane(player).z, 100,400)
+
 };
