@@ -1,39 +1,47 @@
 var Player = function(p, n){
   this.loc = p;
   this.heading = n;
-  this.a = new Vector(0,0,1)
-  this.b = this.a.cross(this.heading)
-  // this.a = scalMult(1/300,new Vector(-n.y, n.x, 0))
+  // this.a = new Vector(0,0,1/300)
+  // this.a = scalMult(1/300,new Vector(n.y,-n.x, 0))
+  this.a = scalMult(1/300,new Vector(0,0, 1))
+  // pre = new Vector(n.y*n.z, -2*n.x*n.z, n.x*n.y)
+  // this.b = scalMult(1/(300*pre.mag()),pre)
   // this.b = scalMult(1/300, new Vector( - n.x * n.z, -n.y * n.z, n.x * n.x + n.y * n.y))
+  this.b = this.heading.cross(this.a)
 };
 
-Player.prototype.rotateBy = function(mult, aORb){
+Player.prototype.rotateBy = function(deg, aORb){
   direction = {"a": this.a, "b": this.b}[aORb];
-  var nPre = this.heading.plus(scalMult(mult,direction));
-  var newHeading = scalMult(1/(nPre.mag()), nPre);
+  newX = Math.cos(deg)*this.heading.x - Math.sin(deg)*this.heading.y;
+  newY = Math.sin(deg)*this.heading.x + Math.cos(deg)*this.heading.y;
+  newHeading = new Vector(newX, newY, 0);
   return new Player(this.loc, newHeading);
 };
 
-Player.prototype.rotate = function(direction){
-  var player = this;
-  switch (direction) {
-    case "A":
-      player = this.rotateBy(-3,"b")
-      break;
-    case "D":
-      player = this.rotateBy(3,"b")
-      break;
-    case "O":
-      player = this.rotateBy(-3,"b")
-      break;
-    case "L":
-      player = this.rotateBy(3,"b")
-      break;
-    default:
-      break;
-  }
-  return player
+Player.prototype.rotateVertBy = function(deg){
+  return new Player(this.loc, this.heading.rotateVert(deg))
 }
+
+// Player.prototype.rotate = function(direction){
+//   switch (key) {
+//     case "A":
+//       newPlayer = player.rotateBy(Math.PI/132,"b")
+//       break;
+//     case "D":
+//       newPlayer = player.rotateBy(-Math.PI/132,"b")
+//       break;
+//     case "O":
+//       newPlayer = player.rotateBy(-Math.PI/132,"b")
+//       break;
+//     case "L":
+//       newPlayer = player.rotateBy(Math.PI/132,"b")
+//       break;
+//     default:
+//       newPlayer = player
+//       break;
+//   }
+//   return newPlayer
+// }
 
 
 var testPlayerOps = function(){

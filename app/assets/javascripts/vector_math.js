@@ -10,7 +10,7 @@ Vector.prototype.dot = function(vec){
 
 Vector.prototype.cross = function(vec){
   var new_x = (this.y * vec.z) - (this.z * vec.y)
-  var new_y = -(this.x * vec.z) - (this.z * vec.x)
+  var new_y = -(this.x * vec.z) + (this.z * vec.x)
   var new_z = (this.x * vec.y) - (this.y * vec.x)
   return new Vector(new_x, new_y, new_z)
 };
@@ -24,7 +24,7 @@ Vector.prototype.minus = function(vec){
 };
 
 Vector.prototype.mag = function(){
-  return sqrt(this.dot(this));
+  return Math.sqrt(this.dot(this));
 };
 
 Vector.prototype.comp = function(vec){

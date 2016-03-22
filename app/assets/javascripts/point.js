@@ -14,7 +14,7 @@ Point.prototype.localCoordsOnVisPlane = function(player){
     var r = this.pointOnVisPlane(player);
     var s = r.comp(player.a) / player.a.mag()
     var t = r.comp(player.b) / player.b.mag()
-    return new Vector(s + 500,t + 250)
+    return new Vector(t + 500,s + 250)
   } else {
     return "sorry"
   }

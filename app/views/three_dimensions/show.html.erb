@@ -16,7 +16,7 @@
 
   var draw = function(){
     background(255,255,255);
-    player.loc = (player.loc).plus(scalMult(1.5,player.heading));
+    // player.loc = (player.loc).plus(scalMult(1.5,player.heading));
 
     if(points.length < 1000){
       points.push(new Point(new Vector(2000 * (Math.random() - 0.5), 2000 * (Math.random() - 0.5), 2000*(Math.random() - 0.5)) ) )
@@ -35,12 +35,38 @@
     for (i = 0; i < points.length; i++){
       if( points[i].isVisibleBy(player)){
         points[i].sketchRelativeTo(player)
+        // if(i===0){console.log(points[i].localCoordsOnVisPlane(player))}
       }
     }
   }
 
   var keyPressed = function(){
-    player = player.rotate(key)
+
+    switch (key) {
+      case "A":
+        newPlayer = player.rotateBy(Math.PI/132,"b")
+        player = newPlayer;
+        break;
+      case "D":
+        newPlayer = player.rotateBy(-Math.PI/132,"b")
+        player = newPlayer;
+        break;
+      case "O":
+        newPlayer = player.rotateVertBy(-Math.PI/132,"b")
+        player = newPlayer;
+        break;
+      case "L":
+        newPlayer = player.rotateVertBy(Math.PI/132,"b")
+        player = newPlayer;
+        break;
+      default:
+        break;
+    }
+
+
+//x -0.7998173223302093
+//y -0.6002434930097441
+    // player = player.rotate(key)
 
     if (key === "W" ) {
       player.loc = (player.loc).plus(scalMult(0.5,player.heading));
