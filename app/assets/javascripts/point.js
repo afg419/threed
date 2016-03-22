@@ -14,9 +14,9 @@ Point.prototype.localCoordsOnVisPlane = function(player){
     var r = this.pointOnVisPlane(player);
     var s = r.comp(player.a) / player.a.mag()
     var t = r.comp(player.b) / player.b.mag()
-    return new Vector(s,t)
+    return new Vector(s + 500,t + 250)
   } else {
-    return new Vector(1000000, 1000000)
+    return "sorry"
   }
 };
 
@@ -26,9 +26,11 @@ Point.prototype.isVisibleBy = function(player){
 }
 
 Point.prototype.sketchRelativeTo = function(player){
-  var coords = this.localCoordsOnVisPlane(player);
-  var dist = this.loc.dist(player.loc)
-  return ellipse(coords.x + 250, coords.y + 250, 40/(Math.pow(dist,0.5)) ,40/(Math.pow(dist,0.5)))
+  if (this.isVisibleBy(player)){
+    var coords = this.localCoordsOnVisPlane(player);
+    var dist = this.loc.dist(player.loc)
+    ellipse(coords.x, coords.y, 40/(Math.pow(dist,0.5)) ,40/(Math.pow(dist,0.5)))
+  }
 };
 
 var testVisOps = function(){
