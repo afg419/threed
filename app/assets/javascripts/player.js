@@ -2,12 +2,12 @@ var Player = function(p, n){
   this.loc = p;
   this.heading = n;
   // this.a = new Vector(0,0,1/300)
-  this.a = scalMult(1/1000,new Vector(n.y,-n.x, 0))
+  this.b = scalMult(1,new Vector(n.y,-n.x, 0))
   // this.a = scalMult(1/1000,new Vector(0,0, 1))
   // pre = new Vector(n.y*n.z, -2*n.x*n.z, n.x*n.y)
   // this.b = scalMult(1/(300*pre.mag()),pre)
   // this.b = scalMult(1/300, new Vector( - n.x * n.z, -n.y * n.z, n.x * n.x + n.y * n.y))
-  this.b = this.heading.cross(this.a)
+  this.a = this.heading.cross(this.b)
 };
 
 Player.prototype.rotateBy = function(deg, aORb){

@@ -4,12 +4,25 @@ var Edge = function(p0, p1){
 };
 
 Edge.prototype.pointsRelativeTo = function(player){
-  return {s: this.source.localCoordsOnVisPlane(player), t: this.target.localCoordsOnVisPlane(player) }
+  var s = this.source.localCoordsOnVisPlane(player)
+  var t = this.target.localCoordsOnVisPlane(player)
+
+  if(!this.source.isVisibleBy(player)){
+    s = new Vector(-10000*(s.x - 500) + 500, -10000*(s.y - 250)+250)
+  }
+
+  if(!this.target.isVisibleBy(player)){
+    t = new Vector(-10000*(t.x - 500) + 500, -10000*(t.y - 250)+250)
+  }
+
+  return {s: s, t: t}
 }
 
 Edge.prototype.sketchRelativeTo = function(player){
-  this.source.sketchRelativeTo(player);
-  this.target.sketchRelativeTo(player);
-  pts = this.pointsRelativeTo(player)
-  line(pts.s.x, pts.s.y, pts.t.x, pts.t.y)
+  // this.source.sketchRelativeTo(player);
+  // this.target.sketchRelativeTo(player);
+  if (this.source.isVisibleBy(player) || this.target.isVisibleBy(player)){
+    pts = this.pointsRelativeTo(player)
+    line(pts.s.x, pts.s.y, pts.t.x, pts.t.y)
+  }
 }

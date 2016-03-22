@@ -20,20 +20,19 @@
     return new Edge(s,t);
   }
 
-
   var t = 0;
-  var e1 = new Edge(point(0,0,0), point(50,0,0))
-  var e2 = new Edge(point(0,0,0), point(0,50,0))
+  var e1 = new Edge(point(0,0,0), point(250,0,0))
+  var e2 = new Edge(point(0,0,0), point(0,100,0))
   var e3 = new Edge(point(0,0,0), point(0,0,50))
-  var e4 = new Edge(point(50,50,50), point(0,50,50))
-  var e5 = new Edge(point(50,50,50), point(50,0,50))
-  var e6 = new Edge(point(50,50,50), point(50,50,0))
-  var e7 = new Edge(point(50,0,0), point(50,50,0))
-  var e8 = new Edge(point(50,0,0), point(50,0,50))
-  var e9 = new Edge(point(0,50,0), point(50,50,0))
-  var e10 = new Edge(point(0,50,0), point(0,50,50))
-  var e11 = new Edge(point(0,0,50), point(0,50,50))
-  var e12 = new Edge(point(0,0,50), point(50,0,50))
+  var e4 = new Edge(point(250,100,50), point(0,100,50))
+  var e5 = new Edge(point(250,100,50), point(250,0,50))
+  var e6 = new Edge(point(250,100,50), point(250,100,0))
+  var e7 = new Edge(point(250,0,0), point(250,100,0))
+  var e8 = new Edge(point(250,0,0), point(250,0,50))
+  var e9 = new Edge(point(0,100,0), point(250,100,0))
+  var e10 = new Edge(point(0,100,0), point(0,100,50))
+  var e11 = new Edge(point(0,0,50), point(0,100,50))
+  var e12 = new Edge(point(0,0,50), point(250,0,50))
 
   var points = [e1.source, e1.target,
                 e2.source, e2.target,
@@ -53,10 +52,7 @@
     }
   }
 
-
-
     var keyPressed = function(){
-
       switch (key) {
         case "A":
           newPlayer = player.rotateBy(Math.PI/132,"b")
@@ -77,7 +73,6 @@
         default:
           break;
       }
-
 
   //x -0.7998173223302093
   //y -0.6002434930097441

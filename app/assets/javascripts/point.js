@@ -10,14 +10,14 @@ Point.prototype.pointOnVisPlane = function(player){
 };
 
 Point.prototype.localCoordsOnVisPlane = function(player){
-  if (this.isVisibleBy(player)){
+  // if (this.isVisibleBy(player)){
     var r = this.pointOnVisPlane(player);
-    var s = r.comp(player.a) / player.a.mag()
-    var t = r.comp(player.b) / player.b.mag()
+    var s = r.comp(player.a) / player.a.mag() * 600
+    var t = r.comp(player.b) / player.b.mag() * 600
     return new Vector(t + 500,s + 250)
-  } else {
-    return "sorry"
-  }
+  // } else {
+  //   return "sorry"
+  // }
 };
 
 Point.prototype.isVisibleBy = function(player){
