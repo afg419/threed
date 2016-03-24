@@ -19,8 +19,6 @@ Edge.prototype.pointsRelativeTo = function(player){
 }
 
 Edge.prototype.sketchRelativeTo = function(player){
-  // this.source.sketchRelativeTo(player);
-  // this.target.sketchRelativeTo(player);
   if (this.source.isVisibleBy(player) || this.target.isVisibleBy(player)){
     pts = this.pointsRelativeTo(player)
     line(pts.s.x, pts.s.y, pts.t.x, pts.t.y)

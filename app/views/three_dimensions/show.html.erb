@@ -63,11 +63,15 @@
           player = newPlayer;
           break;
         case "O":
-          newPlayer = player.rotateVertBy(-Math.PI/132,"b")
+          pre = player.heading.minus(scalMult(0.02,player.a))
+          newHeading = scalMult(1/pre.mag(),pre)
+          newPlayer = new Player(player.loc, newHeading)
           player = newPlayer;
           break;
         case "L":
-          newPlayer = player.rotateVertBy(Math.PI/132,"b")
+          pre = player.heading.plus(scalMult(0.02,player.a))
+          newHeading = scalMult(1/pre.mag(),pre)
+          newPlayer = new Player(player.loc, newHeading)
           player = newPlayer;
           break;
         default:
